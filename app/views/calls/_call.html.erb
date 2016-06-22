@@ -6,6 +6,15 @@
     <% end %>
     </ul>
   </li>
+  <% if call.company_number %>
+    <li>CompanyNumber:
+      <ul>
+      <% call.company_number.attributes.each do |k, v| %>
+        <li><%= "#{k}: #{v}" %></li>
+      <% end %>
+      </ul>
+    </li>
+  <% end %>
   <% if call.user_number %>
     <li>User:
       <ul>
