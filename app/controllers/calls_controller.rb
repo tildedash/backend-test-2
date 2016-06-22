@@ -74,4 +74,8 @@ class CallsController < ApplicationController
       format.xml { render xml: Sip::Response.empty }
     end
   end
+
+  def index
+
+  end
 end

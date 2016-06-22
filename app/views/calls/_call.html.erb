@@ -1,0 +1,35 @@
+<ul>
+  <li>Call:
+    <ul>
+    <% call.attributes.each do |k, v| %>
+      <li><%= "#{k}: #{v}" %></li>
+    <% end %>
+    </ul>
+  </li>
+  <% if call.user_number %>
+    <li>User:
+      <ul>
+      <% call.user_number.user.attributes.each do |k, v| %>
+        <li><%= "#{k}: #{v}" %></li>
+      <% end %>
+      </ul>
+    </li>
+    <li>UserNumber:
+      <ul>
+      <% call.user_number.attributes.each do |k, v| %>
+        <li><%= "#{k}: #{v}" %></li>
+      <% end %>
+      </ul>
+    </li>
+  <% end %>
+  <% if call.voicemail %>
+    <li>Voicemail:
+      <ul>
+      <% call.voicemail.attributes.each do |k, v| %>
+        <li><%= "#{k}: #{v}" %></li>
+      <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>
+<hr/>
