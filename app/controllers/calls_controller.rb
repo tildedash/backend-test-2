@@ -6,8 +6,8 @@ class CallsController < ApplicationController
 
   # webhook when an endpoint receives a call.
   def incoming
-    if Sip.ringing?(params)
-      call_params = Sip.extract_call(params)
+    if Sip::Events.ringing?(params)
+      call_params = Sip::Call.attributes(params)
       company_number = CompanyNumber.find_by(sip_endpoint: call_params[:to])
 
       if company_number
@@ -41,8 +41,8 @@ class CallsController < ApplicationController
   # Redirect to this URL after recording voicemail
   def record
     voicemail = Voicemail.create!({
-          url: Sip.voicemail_url(params),
-          call: Call.find_by(uuid: Sip.extract_callUUID(params))
+          url: Sip::Voicemails.voicemail_url(params),
+          call: Call.find_by(uuid: Sip::Dials.callUUID(params))
         })
 
     respond_to do |format|
@@ -52,7 +52,7 @@ class CallsController < ApplicationController
 
   # Redirect to this URL after leaving Dial.
   def dialaction
-    unless Sip.completed?(params)
+    unless Sip::Dials.completed?(params)
       response = Sip::Response.voicemail(Rails.application.routes.url_helpers.record_calls_url(host: ENV['HOST'], protocol: ENV['PROTOCOL']))
     end
     respond_to do |format|
@@ -66,9 +66,9 @@ class CallsController < ApplicationController
   # called party hangs up
   # caller has pressed any digit
   def dialcallback
-    if Sip.answer?(params)
-      call = Call.find_by!(uuid: Sip.extract_callUUID(params))
-      call.user_number = UserNumber.find_by!(sip_endpoint: Sip.dial_endpoint(params))
+    if Sip::Dials.answer?(params)
+      call = Call.find_by!(uuid: Sip::Dials.callUUID(params))
+      call.user_number = UserNumber.find_by!(sip_endpoint: Sip::Dials.endpoint(params))
       call.save
     end
 

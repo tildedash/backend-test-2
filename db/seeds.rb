@@ -12,7 +12,7 @@ require 'Sip'
 
 # Create the application to receive calls
 puts "Create receiving calls application..."
-application_data = Sip.new_application({
+application_data = Sip::Application.new({
                       answer_url: incoming_calls_url(host: ENV['HOST'], protocol: ENV['PROTOCOL']),
                       app_name: "receiving-call-#{Random.rand(1000)}"
                     })
@@ -29,6 +29,7 @@ puts "Create users…"
 %w(Jane Peter Luke).each do |username|
   user = User.create(name: username)
   endpoint = Sip::Endpoints.new({ username: username, password: '%-5.5s' % username, alias: username  })
+  puts "new endpoint: #{endpoint.sip_uri}"
   user_number = UserNumber.create(sip_endpoint: endpoint.sip_uri, user: user)
 end
 puts "OK"
@@ -37,15 +38,11 @@ puts "OK"
 puts "Create company numbers…"
 %w(MainOffice Sales Support).each do |office_name|
   endpoint = Sip::Endpoints.new({ username: office_name, password: '%-5.5s' % office_name, alias: office_name, app_id: app_id })
+  puts "new endpoint: #{endpoint.sip_uri}"
   company_number = CompanyNumber.create(sip_endpoint: endpoint.sip_uri)
 end
 puts "OK"
 
 # Create the caller endpoint
-application_data = Sip.new_application({
-                      answer_url: incoming_calls_url(host: ENV['HOST'], protocol: ENV['PROTOCOL']),
-                      app_name: 'receiving-call'
-                    })
-
 endpoint = Sip::Endpoints.new({ username: 'caller', password: 'caller', alias: 'caller', app_id: ENV['DIRECT_DIAL_APP_ID'] })
 puts "Your caller endpoint is the following: #{endpoint.sip_uri} (username/password/alias: caller)"
