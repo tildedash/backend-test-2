@@ -8,8 +8,6 @@ UserNumber.destroy_all
 User.destroy_all
 puts "OK"
 
-require 'Sip'
-
 # Create the application to receive calls
 puts "Create receiving calls application..."
 application_data = Sip::Application.new({
