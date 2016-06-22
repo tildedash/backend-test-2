@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922194944) do
+ActiveRecord::Schema.define(version: 20160622140011) do
+
+  create_table "calls", force: :cascade do |t|
+    t.string   "number"
+    t.string   "name"
+    t.integer  "company_number_id"
+    t.integer  "user_number_id"
+    t.string   "uuid"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
 
   create_table "company_numbers", force: :cascade do |t|
     t.string   "sip_endpoint"
@@ -30,6 +40,13 @@ ActiveRecord::Schema.define(version: 20150922194944) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "voicemails", force: :cascade do |t|
+    t.string   "url"
+    t.integer  "call_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

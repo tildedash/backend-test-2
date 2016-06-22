@@ -1,17 +1,14 @@
 # == Schema Information
 #
-# Table name: users
+# Table name: voicemails
 #
 #  id         :integer          not null, primary key
-#  name       :string
+#  url        :string
+#  call_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-require 'test_helper'
-
-class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class Voicemail < ActiveRecord::Base
+  belongs_to :call
 end

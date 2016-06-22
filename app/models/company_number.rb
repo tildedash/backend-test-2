@@ -9,4 +9,5 @@
 #
 
 class CompanyNumber < ActiveRecord::Base
+  has_many :calls
 end

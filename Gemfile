@@ -23,14 +23,16 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-# code lisibility
-gem 'annotate'
+# SIP
+gem 'plivo'
 
 # environment variables
 gem 'figaro'
 
-# SIP
-gem 'plivo'
+group :development do
+  # code lisibility
+  gem 'annotate'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
