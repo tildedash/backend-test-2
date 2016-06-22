@@ -1,2 +1,7 @@
 PLIVO_AUTH_ID: "Your AUTH_ID"
 PLIVO_AUTH_TOKEN: "Your AUTH_TOKEN"
+
+HOST: "my-aircall.herokuapp.com"
+PROTOCOL: "https"
+
+DIRECT_DIAL_APP_ID: <APP_ID>
