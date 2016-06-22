@@ -73,3 +73,34 @@ Fork this repository and send us a pull request. We'll review it and get back to
 [ ] Redirect incoming calls to users' apps by interacting with Plivo.
 
 Contact us at jobs@aircall.io if you need more details.
+
+
+# How to run this app?
+
+## 1/ Update the application.yml file with your keys and env variables
+
+````
+PLIVO_AUTH_ID: "Your AUTH_ID"
+PLIVO_AUTH_TOKEN: "Your AUTH_TOKEN"
+
+HOST: "my-aircall.herokuapp.com"
+PROTOCOL: "https"
+
+DIRECT_DIAL_APP_ID: <APP_ID>
+`````
+
+## 2/ Create, migrate and seed the DB
+
+````
+bundle exec rake db:create
+bundle exec rake db:migrate
+bundle exec rake db:seed
+`````
+
+## 3/ Call one of the company number endpoint with the caller endpoint provided by the seed
+
+## 4/ See the call history
+
+Go to http://localhost:3000 (or https://my-aircall.herokuapp.com for the live demo)
+
+## 5/ Enjoy
