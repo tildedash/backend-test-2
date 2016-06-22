@@ -1,5 +1,3 @@
-require 'Sip'
-
 module Sip::Events
 
   def self.ringing?(params)

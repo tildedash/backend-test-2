@@ -1,5 +1,3 @@
-require 'Sip'
-
 module Sip::Response
 
   def self.forward_to_endpoints(caller_id, callbackUrl, actionUrl, numbers)

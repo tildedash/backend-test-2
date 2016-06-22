@@ -1,5 +1,3 @@
-require 'Sip'
-
 module Sip::Endpoints
 
   def self.all(params = {})

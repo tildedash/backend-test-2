@@ -1,5 +1,3 @@
-require 'Sip'
-
 module Sip::Call
 
   def self.attributes(params)

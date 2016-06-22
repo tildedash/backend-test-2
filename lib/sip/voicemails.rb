@@ -1,5 +1,3 @@
-require 'Sip'
-
 module Sip::Voicemails
 
   def self.voicemail_url(params)

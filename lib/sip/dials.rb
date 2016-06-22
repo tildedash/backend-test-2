@@ -1,5 +1,3 @@
-require 'Sip'
-
 module Sip::Dials
   def self.completed?(params)
     params['CallStatus'] === "completed"
